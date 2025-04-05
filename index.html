@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal DashBoard</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="dashboard">
+      <h1 id="title" contenteditable="true">My DashBoard</h1>
+      <div id="clock"></div>
+      <div id="links">
+        <h2>Links:</h2>
+        <input type="text" id="link-title" placeholder="Rubric" />
+        <input type="url" id="link-Url" placeholder="Link" />
+        <button id="add-link">Add a Link!</button>
+        <ul id="link-List"></ul>
+      </div>
+      <div id="weather">
+        <h2>Weather:</h2>
+        <div id="weather-Info"></div>
+      </div>
+      <div id="notes">
+        <h2>Side-Notes:</h2>
+        <textarea
+          id="note-Area"
+          placeholder="Write your notes here..."
+        ></textarea>
+      </div>
+      <div id="extra-api">
+        <h2>Latest News:</h2>
+        <div id="news"></div>
+      </div>
+    </div>
+    <script src="/script.js"></script>
+  </body>
+</html>
