@@ -59,15 +59,16 @@ loadLinks();
 async function fetchWeather() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async (position) => {
-      const lat = position.coords.latityde;
+      const lat = position.coords.latitude;
       const lon = position.coords.longitude;
-      const apiKey = "YOUR_API_KEY"; // lägg din apinyckel här
-      const response = await fetch(); //lägg in api nyckel
+      const apiKey = "0759b575b399c7575cc70e35c9ce508c";
+      const response = await fetch(
+        `https://api.brightsky.dev/weather?lat=${lat}&lon=${lon}`
+      );
       const data = await response.json();
-      document,
-        (getElementById(
-          "weather-Info"
-        ).innerText = `Temperature: data.main.temp} °C, Weather: ${data.weather[0].description}`);
+      document.getElementById(
+        "weather-Info"
+      ).innerText = `Temperature: ${data.main.temp} °C, Weather: ${data.weather[0].description}`;
     });
   } else {
     document.getElementById("weather-Info").innerText =
@@ -78,14 +79,16 @@ async function fetchWeather() {
 fetchWeather();
 
 document.getElementById("note-Area").addEventListener("input", function () {
-  this.localStorage.setItem("notes", this.value);
+  localStorage.setItem("notes", this.value);
 });
 
 document.getElementById("note-Area").value =
   localStorage.getItem("notes") || "";
 
 async function fetchNews() {
-  const response = await fetch(""); //lägg in api nyckel
+  const response = await fetch(
+    "https://newsapi.org/v2/top-headlines?country=se&apiKey=284da0325c3f453fb27ab27b6ecafe4e"
+  ); //lägg in api nyckel
   const data = await response.json();
   const newsContainer = document.getElementById("news");
   data.articles.forEach((article) => {
