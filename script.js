@@ -56,14 +56,14 @@ linkList.addEventListener("click", function (e) {
 
 loadLinks();
 
-async function fetchWeather() {
+/*async function fetchWeather() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async (position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+      const lat = 59.3293;
+      const lon = 18.0686;
       const apiKey = "0759b575b399c7575cc70e35c9ce508c";
       const response = await fetch(
-        `https://api.brightsky.dev/weather?lat=${lat}&lon=${lon}`
+        `https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=0759b575b399c7575cc70e35c9ce508c&units=metric`
       );
       const data = await response.json();
       document.getElementById(
@@ -74,21 +74,91 @@ async function fetchWeather() {
     document.getElementById("weather-Info").innerText =
       "Geolocation is not available.";
   }
+}*/
+
+/*const lat = 59.3293;
+const lon = 18.0686;
+const apiKey = "0759b575b399c7575cc70e35c9ce508c";
+
+fetch(
+  "https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=0759b575b399c7575cc70e35c9ce508c&units=metric"
+)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Network response out of function: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log("weather data", data);
+  })
+  .catch((error) => {
+    console.error("Wrong fetching data", error);
+  });*/
+
+function geoFindMe() {
+  const status = document.querySelector("#status");
+  const mapLink = document.querySelector("#map-link");
+  const weatherInfo = document.getElementById("weather-Info");
+
+  mapLink.href = "";
+  mapLink.textContent = "";
+
+  function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    status.textContent = "";
+    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+
+    fetchWeather(latitude, longitude);
+  }
+
+  function error() {
+    status.textContent = "Unable to retrieve your location";
+  }
+
+  if (!navigator.geolocation) {
+    status.textContent = "Geolocation is not supported by your browser";
+  } else {
+    status.textContent = "Locating…";
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
 }
 
-fetchWeather();
+/*document.querySelector("#find-me").addEventListener("click", geoFindMe);*/
 
-document.getElementById("note-Area").addEventListener("input", function () {
+/*document.getElementById("note-Area").addEventListener("input", function () {
   localStorage.setItem("notes", this.value);
 });
 
 document.getElementById("note-Area").value =
-  localStorage.getItem("notes") || "";
+  localStorage.getItem("notes") || "";*/
+
+async function fetchWeather(lat, lon) {
+  const apiKey = "0759b575b399c7575cc70e35c9ce508c";
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+    );
+    if (!response.ok) {
+      throw new Error(`Network is out of function ${response.status}`);
+    }
+    const data = await response.json();
+    document.getElementById(
+      "weather-Info"
+    ).innerText = `Temperature: ${data.main.temp} °C, Weather: ${data.weather[0].description}`;
+  } catch (error) {
+    console.error("Error trying to fetch data", error);
+    document.getElementById("weather-Info").innerText =
+      "Could not fetch weather data.";
+  }
+}
+document.querySelector("#find-me").addEventListener("click", geoFindMe);
 
 async function fetchNews() {
-  const response = await fetch(
-    "https://newsapi.org/v2/top-headlines?country=se&apiKey=284da0325c3f453fb27ab27b6ecafe4e"
-  ); //lägg in api nyckel
+  const response = await fetch(""); //lägg in api nyckel
   const data = await response.json();
   const newsContainer = document.getElementById("news");
   data.articles.forEach((article) => {
