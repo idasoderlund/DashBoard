@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal DashBoard</title>
     <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+    />
   </head>
   <body>
     <div class="background">
@@ -32,7 +36,19 @@
       <div class="dashboard">
         <article class="container Links">
           <div id="links">
-            <h2>Links:</h2>
+            <h2>Favourites:</h2>
+            <div id="favouriteOptions">
+              <i class="bx bxl-spotify"></i>
+              <a href="https://open.spotify.com/" target="_blank">Spotify</a>
+              <i class="bx bxl-youtube"></i>
+              <a href="https://www.youtube.com/" target="_blank">Youtube</a>
+              <i class="bx bxl-gmail"></i>
+              <a href="https://mail.google.com/mail/u/0/?hl=sv" target="_blank"
+                >Gmail</a
+              >
+              <i class="bx bxl-messenger"></i>
+              <a href="https://www.messenger.com/" target="_blank">Messenger</a>
+            </div>
             <input type="text" id="link-title" placeholder="Rubric" />
             <input type="url" id="link-Url" placeholder="Link" />
             <button id="add-link">Add a Link!</button>
@@ -53,7 +69,7 @@
 
         <article class="container Notes">
           <div id="notes">
-            <h2>Side-Notes:</h2>
+            <h2>Notes:</h2>
             <textarea
               id="note-Area"
               placeholder="Write your notes here..."
@@ -63,7 +79,7 @@
 
         <article class="container Stocks">
           <div class="stock-news">
-            <h2>Stock Courses</h2>
+            <h2>Stock Prices</h2>
             <input
               type="text"
               id="symbol"
