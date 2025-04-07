@@ -9,6 +9,16 @@ body {
   padding: 20px;
 }
 
+.dashboard,
+.Links,
+.Weather,
+.Notes,
+.Stocks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 1;
+}
+
 .background {
   /*display: flex;
   background-size: cover;
@@ -38,10 +48,15 @@ body {
 }
 
 #clock {
-  color: orange;
+  background: linear-gradient(pink, orange);
   font-size: 38px;
+  color: #fff;
+  border-radius: 20px;
+  padding: 7px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
 }
-.dashboard {
+
+.dashboardHeader {
   max-width: 100%;
   margin: 0;
   /*background: white;*/

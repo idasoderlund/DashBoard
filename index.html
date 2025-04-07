@@ -18,52 +18,65 @@
       </picture>
     </div>
     <header>
-      <div class="dashboard">
+      <div class="dashboardHeader">
         <div id="headerConatiner">
           <div id="clock"></div>
         </div>
       </div>
     </header>
-    <main></main>
+    <main>
+      <div class="dashboard">
+        <article class="choosableTitle">
+          <h1 id="title" contenteditable="true">My Dashboard:</h1>
+        </article>
+
+        <article class="container Links">
+          <div id="links">
+            <h2>Links:</h2>
+            <input type="text" id="link-title" placeholder="Rubric" />
+            <input type="url" id="link-Url" placeholder="Link" />
+            <button id="add-link">Add a Link!</button>
+            <ul id="link-List"></ul>
+          </div>
+        </article>
+
+        <article class="container Weather">
+          <div id="weather">
+            <h2>Weather:</h2>
+            <div id="weather-Info"></div>
+          </div>
+          <button id="find-me">Show my location</button><br />
+          <div id="status"></div>
+          <a id="map-link" target="_blank"></a>
+          <div id="weather-Info"></div>
+        </article>
+
+        <article class="container Notes">
+          <div id="notes">
+            <h2>Side-Notes:</h2>
+            <textarea
+              id="note-Area"
+              placeholder="Write your notes here..."
+            ></textarea>
+          </div>
+        </article>
+
+        <article class="container Stocks">
+          <div class="stock-news">
+            <h2>Stock Courses</h2>
+            <input
+              type="text"
+              id="symbol"
+              placeholder="Write stock Symbol FEX. AAPL"
+            />
+            <button id="fetchStock">Get Stock Prices</button>
+            <div id="stockInfo"></div>
+          </div>
+        </article>
+      </div>
+    </main>
     <footer></footer>
-    <div class="dashboard">
-      <h1 id="title" contenteditable="true">My Dashboard:</h1>
 
-      <div id="links">
-        <h2>Links:</h2>
-        <input type="text" id="link-title" placeholder="Rubric" />
-        <input type="url" id="link-Url" placeholder="Link" />
-        <button id="add-link">Add a Link!</button>
-        <ul id="link-List"></ul>
-      </div>
-      <div id="weather">
-        <h2>Weather:</h2>
-        <div id="weather-Info"></div>
-      </div>
-      <button id="find-me">Show my location</button><br />
-      <div id="status"></div>
-      <a id="map-link" target="_blank"></a>
-      <div id="weather-Info"></div>
-
-      <div id="notes">
-        <h2>Side-Notes:</h2>
-        <textarea
-          id="note-Area"
-          placeholder="Write your notes here..."
-        ></textarea>
-      </div>
-
-      <div class="stock-news">
-        <h2>Stock Courses</h2>
-        <input
-          type="text"
-          id="symbol"
-          placeholder="Write stock Symbol FEX. AAPL"
-        />
-        <button id="fetchStock">Get Stock Prices</button>
-        <div id="stockInfo"></div>
-      </div>
-    </div>
     <script src="/script.js"></script>
   </body>
 </html>
