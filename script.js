@@ -56,46 +56,7 @@ linkList.addEventListener("click", function (e) {
 
 loadLinks();
 
-/*async function fetchWeather() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const lat = 59.3293;
-      const lon = 18.0686;
-      const apiKey = "0759b575b399c7575cc70e35c9ce508c";
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=0759b575b399c7575cc70e35c9ce508c&units=metric`
-      );
-      const data = await response.json();
-      document.getElementById(
-        "weather-Info"
-      ).innerText = `Temperature: ${data.main.temp} °C, Weather: ${data.weather[0].description}`;
-    });
-  } else {
-    document.getElementById("weather-Info").innerText =
-      "Geolocation is not available.";
-  }
-}*/
-
-/*const lat = 59.3293;
-const lon = 18.0686;
-const apiKey = "0759b575b399c7575cc70e35c9ce508c";
-
-fetch(
-  "https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=0759b575b399c7575cc70e35c9ce508c&units=metric"
-)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Network response out of function: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log("weather data", data);
-  })
-  .catch((error) => {
-    console.error("Wrong fetching data", error);
-  });*/
-
+//Väder api
 function geoFindMe() {
   const status = document.querySelector("#status");
   const mapLink = document.querySelector("#map-link");
@@ -126,15 +87,6 @@ function geoFindMe() {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 }
-
-/*document.querySelector("#find-me").addEventListener("click", geoFindMe);*/
-
-/*document.getElementById("note-Area").addEventListener("input", function () {
-  localStorage.setItem("notes", this.value);
-});
-
-document.getElementById("note-Area").value =
-  localStorage.getItem("notes") || "";*/
 
 async function fetchWeather(lat, lon) {
   const apiKey = "0759b575b399c7575cc70e35c9ce508c";
