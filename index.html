@@ -33,9 +33,16 @@
           placeholder="Write your notes here..."
         ></textarea>
       </div>
-      <div id="extra-api">
-        <h2>Latest News:</h2>
-        <div id="news"></div>
+
+      <div class="stock-news">
+        <h2>Stock Courses</h2>
+        <input
+          type="text"
+          id="symbol"
+          placeholder="Write stock Symbol FEX. AAPL"
+        />
+        <button id="fetchStock">Get Stock Prices</button>
+        <div id="stockInfo"></div>
       </div>
     </div>
     <script src="/script.js"></script>

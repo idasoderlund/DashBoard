@@ -124,14 +124,43 @@ noteArea.addEventListener("input", function () {
 });
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-async function fetchNews() {
-  const response = await fetch(""); //lägg in api nyckel
-  const data = await response.json();
-  const newsContainer = document.getElementById("news");
-  data.articles.forEach((article) => {
-    const div = document.createElement("div");
-    div.innerHTML = ` <a href="${article.url}" target="_blank">${article.title}</a>`;
-    newsContainer.appendChild(div);
-  });
-}
-fetchNews();
+
+document.getElementById("fetchStock").addEventListener("click", function () {
+  const symbol = document.getElementById("symbol").value;
+  const apiKey = "W27I5PQZWEHYBN5R";
+  const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&apikey=${apiKey}`;
+
+  fetch(
+    `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&apikey=${apiKey}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network is out of function");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (!data["Time Series (1min)"]) {
+        throw new Error("No data found for the provided symbol");
+      }
+
+      const timeSeries = data["Time Series (1min)"];
+      const latestTime = Object.keys(timeSeries)[0];
+      const latestData = timeSeries[latestTime];
+
+      const stockInfo = `
+    <h2>${symbol.toUpperCase()}</h2>
+    <p>Time: ${latestTime}</p>
+    <p>Opening Price: ${latestData["1. open"]}</p>
+    <p>Most increased Price: ${latestData["2. high"]}</p>
+    <p>Most decreased Price: ${latestData["3. low"]}</p>
+    <p>Closing Price: ${latestData["4. close"]}</p>
+    <p>Volume: ${latestData["5. volume"]}</p>`;
+      document.getElementById("stockInfo").innerHTML = stockInfo;
+    })
+    .catch((error) => {
+      console.error("Nwtwork error has happened trying to fetch data", error);
+      document.getElementById("stockInfo").innerHTML =
+        "A wrong has occures. Please control the stock-symbol or try again later";
+    });
+});
