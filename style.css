@@ -35,6 +35,7 @@ body {
   gap: 20px;
   border-radius: 15px;
   padding: 25px;
+  height: 100vh;
 }
 
 .background {
@@ -125,13 +126,26 @@ h2 {
   padding: 15px;
 }
 
-#add-link {
+#weather-Info {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 7px;
+}
+
+#add-link,
+#fetchStock,
+#find-me {
   background-color: #d8d9da;
   color: #3c3d37;
   padding: 5px;
   font-weight: 600;
   border-radius: 20px;
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #note-area {

@@ -57,6 +57,20 @@ linkList.addEventListener("click", function (e) {
 
 loadLinks();
 
+//toggle-element för add-links----------------------------------------------------------------------------------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleAddLinks = document.getElementById("add-link");
+
+  toggleAddLinks.addEventListener("click", function () {
+    if (toggleAddLinks.textContent === "none") {
+      toggleAddLinks.textContent = "block";
+    } else {
+      toggleAddLinks.textContent = "none";
+    }
+  });
+});
+
 //Väder api----------------------------------------------------------------------------------------------------------------------
 function geoFindMe() {
   const status = document.querySelector("#status");
