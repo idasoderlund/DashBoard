@@ -19,11 +19,11 @@ document.getElementById("add-link").addEventListener("click", function () {
   if (title && url) {
     const li = document.createElement("li");
     li.innerHTML = `<a href="${url}" target="_blank">${title}</a> <button class="reove-link"> Remove</button>`;
-    linkList.appenchild(li);
+    linkList.appendChild(li);
 
-    saveLink();
-    document.getAnimations("link-title").value = "";
-    document.getElementById("link-url").value = "";
+    saveLinks();
+    document.getElementById("link-title").value = "";
+    document.getElementById("link-Url").value = "";
   }
 });
 
@@ -56,7 +56,7 @@ linkList.addEventListener("click", function (e) {
 
 loadLinks();
 
-//Väder api
+//Väder api----------------------------------------------------------------------------------------------------------------------
 function geoFindMe() {
   const status = document.querySelector("#status");
   const mapLink = document.querySelector("#map-link");
@@ -113,7 +113,7 @@ async function fetchWeather(lat, lon) {
   }
 }
 document.querySelector("#find-me").addEventListener("click", geoFindMe);
-
+//-----------------------------------------------------------------------------------------------------------------------------------------
 async function fetchNews() {
   const response = await fetch(""); //lägg in api nyckel
   const data = await response.json();
