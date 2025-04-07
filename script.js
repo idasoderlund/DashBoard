@@ -10,6 +10,7 @@ document.getElementById("title").addEventListener("blur", function () {
 document.getElementById("title").innerText =
   localStorage.getItem("dashboardTitle") || "My DashBoard;";
 
+//--Links--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 const linkList = document.getElementById("link-List");
 
 document.getElementById("add-link").addEventListener("click", function () {
@@ -18,7 +19,7 @@ document.getElementById("add-link").addEventListener("click", function () {
 
   if (title && url) {
     const li = document.createElement("li");
-    li.innerHTML = `<a href="${url}" target="_blank">${title}</a> <button class="reove-link"> Remove</button>`;
+    li.innerHTML = `<a href="${url}" target="_blank">${title}</a> <button class="remove-link"> Remove</button>`;
     linkList.appendChild(li);
 
     saveLinks();
@@ -113,6 +114,15 @@ async function fetchWeather(lat, lon) {
   }
 }
 document.querySelector("#find-me").addEventListener("click", geoFindMe);
+//-----------------------------------------------------------------------------------------------------------------------------------------
+const noteArea = document.getElementById("note-Area");
+
+noteArea.value = localStorage.getItem("notes") || "";
+
+noteArea.addEventListener("input", function () {
+  localStorage.setItem("notes", noteArea.value);
+});
+
 //-----------------------------------------------------------------------------------------------------------------------------------------
 async function fetchNews() {
   const response = await fetch(""); //lägg in api nyckel
