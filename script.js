@@ -79,11 +79,9 @@ function geoFindMe() {
 
     fetchWeather(latitude, longitude);
   }
-
   function error() {
     status.textContent = "Unable to retrieve your location";
   }
-
   if (!navigator.geolocation) {
     status.textContent = "Geolocation is not supported by your browser";
   } else {

@@ -9,6 +9,18 @@ body {
   padding: 20px;
 }
 
+.choosableTitle {
+  background-color: transparent;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 25px;
+}
+
 .dashboard,
 .Links,
 .Weather,
@@ -17,6 +29,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   z-index: 1;
+  background-color: rgba(240, 240, 240, 0.3);
+  gap: 20px;
 }
 
 .background {
@@ -54,6 +68,7 @@ body {
   border-radius: 20px;
   padding: 7px;
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+  margin-bottom: 85px;
 }
 
 .dashboardHeader {
@@ -69,7 +84,7 @@ body {
 
 h1,
 h2 {
-  color: #333;
+  color: #fff;
 }
 
 #link-List {
