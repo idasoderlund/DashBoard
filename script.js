@@ -73,6 +73,9 @@ function geoFindMe() {
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
 
+    localStorage.setItem("latitude", "latitude");
+    localStorage.setItem("longitude", "longitude");
+
     fetchWeather(latitude, longitude);
   }
 
@@ -101,6 +104,8 @@ async function fetchWeather(lat, lon) {
     document.getElementById(
       "weather-Info"
     ).innerText = `Temperature: ${data.main.temp} °C, Weather: ${data.weather[0].description}`;
+
+    localStorage.setItem("weather", JSON.stringify(data));
   } catch (error) {
     console.error("Error trying to fetch data", error);
     document.getElementById("weather-Info").innerText =
