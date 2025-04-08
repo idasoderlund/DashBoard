@@ -74,11 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       linkTitleInput.style.display = "block";
       linkUrlInput.style.display = "block";
-      addLinkButton.textContent = "Hide Inputs";
+      addLinkButton.textContent = "Click to Add";
     } else {
       linkTitleInput.style.display = "none";
       linkUrlInput.style.display = "none";
-      addLinkButton.textContent = "Show Inputs";
+      addLinkButton.textContent = "+ Add Link";
     }
   });
   linkTitleInput.style.display = "none";
