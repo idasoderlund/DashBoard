@@ -12,10 +12,13 @@ document.getElementById("title").innerText =
 
 //--Links--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 const linkList = document.getElementById("link-List");
+const linkTitleInput = document.getElementById("link-title");
+const linkUrlInput = document.getElementById("link-Url");
+const addLinkButton = document.getElementById("add-link");
 
-document.getElementById("add-link").addEventListener("click", function () {
-  const title = document.getElementById("link-title").value;
-  const url = document.getElementById("link-Url").value;
+addLinkButton.addEventListener("click", function () {
+  const title = linkTitleInput.value;
+  const url = linkUrlInput.value;
 
   if (title && url) {
     const li = document.createElement("li");
@@ -23,8 +26,8 @@ document.getElementById("add-link").addEventListener("click", function () {
     linkList.appendChild(li);
 
     saveLinks();
-    document.getElementById("link-title").value = "";
-    document.getElementById("link-Url").value = "";
+    linkTitleInput.value = "";
+    linkUrlInput.value = "";
   }
 });
 
@@ -60,15 +63,29 @@ loadLinks();
 //toggle-element för add-links----------------------------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleAddLinks = document.getElementById("add-link");
+  const linkInputsContainer = document.createElement("div");
+  linkInputsContainer.appendChild(linkTitleInput);
+  linkInputsContainer.appendChild(linkUrlInput);
 
-  toggleAddLinks.addEventListener("click", function () {
-    if (toggleAddLinks.textContent === "none") {
-      toggleAddLinks.textContent = "block";
+  addLinkButton.addEventListener("click", function () {
+    if (
+      linkTitleInput.style.display === "none" ||
+      linkUrlInput.style.display === "none"
+    ) {
+      linkTitleInput.style.display = "block";
+      linkUrlInput.style.display = "block";
+      addLinkButton.textContent = "Hide Inputs";
     } else {
-      toggleAddLinks.textContent = "none";
+      linkTitleInput.style.display = "none";
+      linkUrlInput.style.display = "none";
+      addLinkButton.textContent = "Show Inputs";
     }
   });
+  linkTitleInput.style.display = "none";
+  linkUrlInput.style.display = "none";
+
+  const favouriteOptions = document.getElementById("favouriteOptions");
+  favouriteOptions.appendChild(linkInputsContainer);
 });
 
 //Väder api----------------------------------------------------------------------------------------------------------------------
