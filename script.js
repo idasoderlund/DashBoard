@@ -102,7 +102,7 @@ function geoFindMe() {
     const longitude = position.coords.longitude;
 
     status.textContent = "";
-    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}${longitude}`;
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
 
     localStorage.setItem("latitude", "latitude");
@@ -125,24 +125,55 @@ async function fetchWeather(lat, lon) {
   const apiKey = "0759b575b399c7575cc70e35c9ce508c";
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
     );
     if (!response.ok) {
       throw new Error(`Network is out of function ${response.status}`);
     }
     const data = await response.json();
-    document.getElementById(
-      "weather-Info"
-    ).innerText = `Temperature: ${data.main.temp} °C, Weather: ${data.weather[0].description}`;
 
-    localStorage.setItem("weather", JSON.stringify(data));
+    const weatherInfo = document.getElementById("weather-Info");
+    weatherInfo.innerHTML = "";
+
+    const today = new Date();
+    /*const forecastDays = [0, 1, 2];*/
+
+    for (let i = 0; i < 3; i++) {
+      const forecastDate = new Date(today);
+      forecastDate.setDate(today.getDate() + i);
+      const forecastDateStr = forecastDate.toISOString().slice(0, 10);
+
+      const dailyForecast = data.list.filter((forecast) =>
+        forecast.dt_txt.startsWith(forecastDateStr)
+      );
+
+      if (dailyForecast.length > 0) {
+        const avgTemp =
+          dailyForecast.reduce((sum, forecast) => sum + forecast.main.temp, 0) /
+          dailyForecast.length;
+        const weatherDescription = dailyForecast[0].weather[0].description;
+        const icon = dailyForecast[0].weather[0].icon;
+
+        const weatherItem = document.createElement("div");
+        weatherItem.className = "weather-item";
+        weatherItem.innerHTML = `
+        <h3>${forecastDate.toLocaleDateString()}</h3>
+        <img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="${weatherDescription}" alt="${weatherDescription}" />
+        <p>${Math.round(avgTemp)} °C</p>
+        <p>${weatherDescription}</p>
+        `;
+        weatherInfo.appendChild(weatherItem);
+      }
+    }
   } catch (error) {
     console.error("Error trying to fetch data", error);
     document.getElementById("weather-Info").innerText =
       "Could not fetch weather data.";
   }
 }
-document.querySelector("#find-me").addEventListener("click", geoFindMe);
+document.addEventListener("DOMContentLoaded", function () {
+  geoFindMe();
+});
 //-----------------------------------------------------------------------------------------------------------------------------------------
 const noteArea = document.getElementById("note-Area");
 

@@ -150,11 +150,45 @@ h2 {
   text-align: center;
 }
 
+#symbol,
+#link-title,
+#link-Url {
+  border-radius: 10px;
+  padding: 2px;
+}
+#fetchStock {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
 #add-link {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 15px;
+  color: #fff;
+}
+
+.weather-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  /*background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);*/
+}
+
+.weather-item img {
+  margin-right: 10px;
 }
 
 #note-area {
