@@ -7,6 +7,7 @@ body {
   background-color: #f4f4f4;
   margin: 0;
   padding: 20px;
+  height: 100%;
 }
 
 .choosableTitle {
@@ -40,25 +41,36 @@ body {
 }
 
 .container {
-  flex: 1;
-  min-width: 250px;
+  /*flex: 1;*/
+  /*min-width: 250px;
   min-height: 300px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   padding: 15px;
   margin: 10px;
   width: calc(100%-10);
+  height: 100%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
+}
+
+#note-area {
+  flex-grow: 1;
 }
 
 .dashboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
   gap: 20px;
-  z-index: 1;
+  /*z-index: 1;
   background-color: rgba(240, 240, 240, 0.3);
   border-radius: 15px;
-  padding: 25px;
+  padding: 25px;*/
+  height: calc(100vh - 200px);
+  overflow-y: auto;
 }
 
 .background {
