@@ -63,14 +63,30 @@ body {
 .dashboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
   gap: 20px;
-  /*z-index: 1;
-  background-color: rgba(240, 240, 240, 0.3);
-  border-radius: 15px;
-  padding: 25px;*/
   height: calc(100vh - 200px);
   overflow-y: auto;
+}
+
+@media (max-width: 428px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+@media (min-width: 429px) and (max-width: 867px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+  }
+}
+
+@media (min-width: 868px) {
+  .dashboard {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+  }
 }
 
 .background {
