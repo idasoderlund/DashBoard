@@ -184,7 +184,7 @@ noteArea.addEventListener("input", function () {
 });
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-
+//MainCode to show teatcher for weather api
 document.getElementById("fetchStock").addEventListener("click", function () {
   const symbol = document.getElementById("symbol").value;
   const apiKey = "W27I5PQZWEHYBN5R";
@@ -228,7 +228,7 @@ document.getElementById("fetchStock").addEventListener("click", function () {
 //-----------------------------------------------------------------------------------------------------------------
 //Ha kvar för att visa läraren
 //Kod för att få användare att mata in egen api nyckel. Vet inte varför väder api inte hämtas trots giltig api nyckel
-document.getElementById("save-api-key").addEventListener("click", () => {
+/*document.getElementById("save-api-key").addEventListener("click", () => {
   const apiKey = document.getElementById("api-key-input").value;
   if (apiKey) {
     localStorage.setItem("apiKey", apiKey);
@@ -308,7 +308,105 @@ async function fetchWeather(latitude, longitude) {
     document.getElementById("weather-Info").innerText =
       "Could not fetch the weather data.";
   }
-}
+}*/
 //---------------------------------------------------------------------------------------------------------------------------
 //Ha kvar för att visa läraren som alternativ kod för G
 // Hämta väder api utan nyckel med open api
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  const weatherInfo = document.getElementById("weather-Info");
+  const findMeButton = document.getElementById("find-me");
+  const statusDiv = document.getElementById("status");
+  const mapLink = document.getElementById("map-link");
+
+  findMeButton.addEventListener("click", () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else
+      statusDiv.textContent = "eolocation is not supported by this browser.";
+  });
+});
+
+function showPosition(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+  getWeatherData(latitude, longitude);
+  mapLink.href = `https://www.google.com/maps/@${latitude},${longitude},15z`;
+  mapLink.textContent = "View on Google Maps";
+}
+
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      statusDiv.textContent = "Geolocation request is denied";
+      break;
+
+    case error.POSITION_UNAVAILABLE:
+      statusDiv.textContent = "The information about location is unavailable";
+      break;
+
+    case error.TIMEOUT:
+      statusDiv.textContent =
+        "The time for requesing user location has passed out";
+      break;
+
+    case error.UNKNOWN_ERROR:
+      statusDiv.textContent = "It has occured an unknown error";
+      break;
+  }
+}
+async function getWeatherData(latitude, longitude) {
+  const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation_sum,weathercode&timezone=auto`;
+  try {
+    const response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation_sum,weathercode&timezone=auto`
+    );
+    const data = await response.json();
+
+    if (data.hourly) {
+      displayWeather(data.hourly);
+    } else {
+      weatherInfo.textContent = "Weather data is not available to show";
+    }
+  } catch (error) {
+    console.error("Error when trying to fetch the data", error);
+    weatherInfo.textContent = "Error when fetching data.";
+  }
+}
+
+function displayWeather(hourlyData) {
+  weatherInfo.innerHTML = "";
+  const { temperature_2m, precipitation_sum, weathercode } = hourlyData;
+
+  for (let i = 0; i < temperature_2m.length; i++) {
+    const Temperature = temperature_2m[i];
+    const precipitation = precipitation_sum[i];
+    const weatherCondition = getWeatherCondition(weathercode[i]);
+
+    const weatherItem = document.createElement("div");
+    weatherItem.classList.add(weather - item);
+    weatherItem.innerHTML = `
+    <p>Temperature: ${Temperature}°C</p>
+    <p>Precipitation: ${precipitation}</p>
+    <p>Condition: ${weatherCondition}</p>
+    `;
+    weatherInfo.appendChild("weatherItem");
+  }
+}
+
+function getWeatherCondition(code) {
+  const conditions = {
+    0: "Clear sky",
+    1: "Mainly Clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Fog",
+    61: "Drizzle",
+    63: "Rain",
+    80: "Rain showers",
+    95: "Thunderstorms",
+    99: "Thunderstorms with hail",
+  };
+  return conditions[code] || "unknown condition";
+}*/
