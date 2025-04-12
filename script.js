@@ -224,3 +224,91 @@ document.getElementById("fetchStock").addEventListener("click", function () {
         "A wrong has occures. Please control the stock-symbol or try again later";
     });
 });
+
+//-----------------------------------------------------------------------------------------------------------------
+//Ha kvar för att visa läraren
+//Kod för att få användare att mata in egen api nyckel. Vet inte varför väder api inte hämtas trots giltig api nyckel
+document.getElementById("save-api-key").addEventListener("click", () => {
+  const apiKey = document.getElementById("api-key-input").value;
+  if (apiKey) {
+    localStorage.setItem("apiKey", apiKey);
+    alert("API-Key is now saved!");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          fetchWeather(latitude, longitude);
+        },
+        function (error) {
+          alert("Unable to retrieve your location. Please try again.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+});
+
+async function fetchWeather(latitude, longitude) {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    alert("Please write an API-Key first.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric"
+    );
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error response", errorData);
+
+      throw new Error(`Network error: ${response.status}`);
+    }
+    const data = await response.json();
+
+    console.log(data);
+
+    const today = new Date();
+    const threeDaysWeather = data.list
+      .filter((item) => {
+        const date = new Date(item.dt * 1000);
+        return (
+          date.getDate() >= today.getDate() &&
+          date.getDate() <= today.getDate() + 2 &&
+          date.getMonth() === today.getMonth()
+        );
+      })
+      .slice(0, 3);
+
+    const weatherHtml = threeDaysWeather
+      .map((item) => {
+        const date = new Date(item.dt * 1000);
+        const icon = item.weather[0].icon;
+        const temp = item.main.temp;
+        const description = item.weather[0].description;
+        return `
+      <div class="weather-day">
+      <h3>${date.toLocaleDateString()}</h3>
+      <img src="http://openweathermap.org/img/wn/${icon}.png" alt="${description}" />
+      <p>Temperature: ${temp}°C</p>
+      <p>Weather: ${description}</p>
+      </div>
+      `;
+      })
+      .join("");
+
+    document.getElementById("weather-Info").innerHTML = weatherHtml;
+  } catch (error) {
+    console.error("Error when trying to fetch weather data.", error);
+    document.getElementById("weather-Info").innerText =
+      "Could not fetch the weather data.";
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------------
+//Ha kvar för att visa läraren som alternativ kod för G
+// Hämta väder api utan nyckel med open api
