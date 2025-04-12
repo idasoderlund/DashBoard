@@ -184,7 +184,7 @@ noteArea.addEventListener("input", function () {
 });
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
-//MainCode to show teatcher for weather api
+//MainCode to show teatcher for weather api. weather data si fetched from extern api but api key is shown in code.
 document.getElementById("fetchStock").addEventListener("click", function () {
   const symbol = document.getElementById("symbol").value;
   const apiKey = "W27I5PQZWEHYBN5R";
@@ -226,8 +226,8 @@ document.getElementById("fetchStock").addEventListener("click", function () {
 });
 
 //-----------------------------------------------------------------------------------------------------------------
-//Ha kvar för att visa läraren
-//Kod för att få användare att mata in egen api nyckel. Vet inte varför väder api inte hämtas trots giltig api nyckel
+//Keep to show teatcher
+//Code where user writes api key. i don´t know why weather data is not fetched from api even though api key is valid.
 /*document.getElementById("save-api-key").addEventListener("click", () => {
   const apiKey = document.getElementById("api-key-input").value;
   if (apiKey) {
@@ -310,8 +310,7 @@ async function fetchWeather(latitude, longitude) {
   }
 }*/
 //---------------------------------------------------------------------------------------------------------------------------
-//Ha kvar för att visa läraren som alternativ kod för G
-// Hämta väder api utan nyckel med open api
+//Keep to show teatcher for G. Fetching weather from open API, no key is used.
 /*
 document.addEventListener("DOMContentLoaded", function () {
   const weatherInfo = document.getElementById("weather-Info");
