@@ -144,10 +144,30 @@ h2 {
   font-weight: 200;
 }
 #link-List {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   gap: 10px;
-  text-align: center;
+  flex-direction: column;
+  /*text-align: center;*/
 }
+#link-List a {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: #f1efec;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+#link-List a:hover {
+  background-color: #e0dedb;
+}
+
 #favouriteOptions,
 #weather-Info {
   display: flex;
@@ -200,6 +220,7 @@ h2 {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 }
 .weather-grid {
   display: grid;
