@@ -114,7 +114,7 @@ async function fetchWeather(t, e) {
         (g.className = "weather-item"),
           (g.innerHTML = `
         <h3>${l.toLocaleDateString()}</h3>
-        <img src="http://openweathermap.org/img/wn/${u}@2x.png" alt="${h}" alt="${h}" />
+        <img src="https://openweathermap.org/img/wn/${u}@2x.png" alt="${h}" alt="${h}" />
         <p>${Math.round(s)} \xb0C</p>
         <p>${h}</p>
         `),
